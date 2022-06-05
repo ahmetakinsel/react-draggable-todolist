@@ -1,25 +1,61 @@
 import React, { useContext } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { DataContext } from "../Context";
+import { Context } from "../Context";
 
 const List = () => {
-  const [data, setData] = useContext(DataContext);
+  const [data, setData] = useContext(Context);
 
   const deleteItem = (id) => {
     setData(data.filter((x) => x.id !== id));
   };
+
+  const handleEnd = (result) => {
+    console.log(result);
+    const items = Array.from(data);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+    setData(items);
+
+    if (!result.destination) {
+      return;
+    }
+  };
+
   return (
-    <div>
-      <ul>
-        {data.map((item, index) => (
-          <div key={item.id}>
-            <li>
-              {index}. {item.name}{" "}
-            </li>
-            <button onClick={() => deleteItem(item.id)}> Delete</button>
-          </div>
-        ))}
-      </ul>
+    <div className="App">
+      <DragDropContext onDragEnd={handleEnd}>
+        <Droppable droppableId="to-dos">
+          {(provided) => (
+            <ul {...provided.droppableProps} ref={provided.innerRef}>
+              {data.map((item, index) => (
+                <Draggable
+                  key={item.id}
+                  draggableId={item.id.toString()}
+                  index={index}
+                >
+                  {(provided, snapshot) => (
+                    <li
+                      {...provided.draggableProps}
+                      ref={provided.innerRef}
+                      {...provided.dragHandleProps}
+                      key={item.id}
+                      className={
+                        snapshot.isDragging ? "selected" : "not-selected"
+                      }
+                    >
+                      {index + 1}.{item.name}
+                      <button onClick={() => deleteItem(item.id)}>
+                        Delete
+                      </button>
+                    </li>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+            </ul>
+          )}
+        </Droppable>
+      </DragDropContext>
     </div>
   );
 };

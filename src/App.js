@@ -1,15 +1,22 @@
 import React from "react";
-import DataList from "./Context";
+import Context from "./Context";
 import Form from "./components/Form";
 import List from "./components/List";
 
 function App() {
   return (
-    <div>
-      <DataList>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        marginTop: "50px",
+      }}
+    >
+      <Context>
         <Form />
         <List />
-      </DataList>
+      </Context>
     </div>
   );
 }
