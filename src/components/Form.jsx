@@ -8,9 +8,11 @@ const styles = {
   form: { display: "flex", alignItems: "center" },
   input: {
     width: "200px",
-    height: "40px",
+    height: "30px",
     borderRadius: "5px",
     border: "1px solid gray",
+    marginLeft: "10px",
+    marginRight: "10px",
   },
 };
 
@@ -19,20 +21,36 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-const Header = styled.h2``;
+const Wrapper = styled.div``;
+
+const Header = styled.h2`
+  line-height: 18px;
+  text-align: center;
+  letter-spacing: -0.2px;
+`;
 
 const Label = styled.label`
   font-size: 18px;
-`;
-const Input = styled.input`
-  margin-left: 10px;
-  margin-right: 10px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 18px;
+  text-align: center;
+  letter-spacing: -0.2px;
 `;
 
 const Button = styled.button`
-  width: "410px";
-  height: "40px";
-  color: red;
+  width: 107px;
+  height: 46px;
+  color: #ffffff;
+  background: #000000;
+  border-radius: 75px;
+  border: "none";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 18px;
+  text-align: center;
+  letter-spacing: -0.2px;
 `;
 
 const Form = () => {
@@ -48,17 +66,15 @@ const Form = () => {
     <Container>
       <Header>My Draggable List</Header>
       <form style={styles.form} onSubmit={handleSubmit(onSubmit)}>
-        <div>
+        <Wrapper>
           <Label>
             Name:
-            <Input style={styles.input} type="text" {...register("name")} />
+            <input style={styles.input} type="text" {...register("name")} />
           </Label>
-        </div>
-        <div>
-          <Button type="submit" value="Add">
-            Add
-          </Button>
-        </div>
+        </Wrapper>
+        <Wrapper>
+          <Button type="submit">Add</Button>
+        </Wrapper>
       </form>
     </Container>
   );
