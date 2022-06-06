@@ -17,9 +17,10 @@ const ListWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid red;
+  background-color: #4fb0c6;
+  border: 1px solid #fff;
   border-radius: 5px;
-  width: 350px;
+  width: 400px;
   height: 60px;
   padding: 5px;
   margin-bottom: 10px;
@@ -33,17 +34,20 @@ const OrderedList = styled.li`
   align-items: center;
   gap: 10px;
   padding: 10px;
+  color: #fff;
+  font-size: 16px;
+  letter-spacing: -0.2px;
 `;
 
 const Button = styled.button`
   width: 60px;
   height: 30px;
-  color: #ffffff;
-  background: #000000;
+  color: #fff;
+  background: #000;
   border-radius: 75px;
   border: none;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 15px;
   line-height: 18px;
   text-align: center;
@@ -77,7 +81,7 @@ const List = () => {
   };
 
   return (
-    <Container className="App">
+    <Container>
       <DragDropContext onDragEnd={handleEnd}>
         <Droppable droppableId="to-dos">
           {(provided) => (
@@ -100,7 +104,8 @@ const List = () => {
                         key={item.id}
                       >
                         <OrderedList>
-                          {index + 1}.{item.name}
+                          {index + 1}.{"  "}
+                          {item.name}
                         </OrderedList>
                         <Button onClick={() => deleteItem(item.id)}>
                           Delete

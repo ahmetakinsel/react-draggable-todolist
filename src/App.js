@@ -14,6 +14,7 @@ function App() {
         marginTop: "50px",
       }}
     >
+      <h2>Task Manager</h2>
       <Context>
         <Form />
         <List />

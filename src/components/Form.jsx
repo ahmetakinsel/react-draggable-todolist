@@ -28,12 +28,6 @@ const FormWrapper = styled.div`
   display: flex;
 `;
 
-const Header = styled.h2`
-  line-height: 18px;
-  text-align: center;
-  letter-spacing: -0.2px;
-`;
-
 const Label = styled.label`
   font-size: 18px;
   font-style: normal;
@@ -77,7 +71,6 @@ const Form = () => {
   return (
     <>
       <Container>
-        <Header>My Draggable List</Header>
         <FormWrapper>
           <form style={styles.form} onSubmit={handleSubmit(onSubmit)}>
             <Wrapper>
