@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { Context } from "../Context";
 import styled from "styled-components";
@@ -46,9 +46,18 @@ const OrderedList = styled.li`
 
 const List = () => {
   const [data, setData] = useContext(Context);
+  const [checked, setChecked] = useState(false);
 
   const deleteItem = (id) => {
     setData(data.filter((x) => x.id !== id));
+  };
+
+  const handleChecked = (item, index) => {
+    if (item.index) {
+      setChecked(!checked);
+    } else {
+      console.log("?");
+    }
   };
 
   const handleEnd = (result) => {
@@ -87,12 +96,21 @@ const List = () => {
                         key={item.id}
                       >
                         <OrderedList>
-                          <Checkbox type="checkbox" />
+                          <Checkbox
+                            type="checkbox"
+                            value={item.checked}
+                            onChange={() => handleChecked(item.id)}
+                          />
                           {index + 1}.{"  "}
                           {item.name}
                         </OrderedList>
                         <AiFillDelete
-                          style={{ cursor: "pointer", color: "#8bc34a" }}
+                          style={{
+                            width: "30px",
+                            height: "18px",
+                            cursor: "pointer",
+                            color: "#8bc34a",
+                          }}
                           onClick={() => deleteItem(item.id)}
                         />
                       </ListWrapper>
