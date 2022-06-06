@@ -92,7 +92,7 @@ const List = () => {
                     draggableId={item.id.toString()}
                     index={index}
                   >
-                    {(provided, snapshot) => (
+                    {(provided) => (
                       <ListWrapper
                         {...provided.draggableProps}
                         ref={provided.innerRef}

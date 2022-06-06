@@ -16,7 +16,17 @@ const styles = {
   },
 };
 
-const Wrapper = styled.div``;
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+`;
+const Wrapper = styled.div`
+  display: flex;
+`;
+const FormWrapper = styled.div`
+  display: flex;
+`;
 
 const Header = styled.h2`
   line-height: 18px;
@@ -66,22 +76,27 @@ const Form = () => {
   };
   return (
     <>
-      <div>
+      <Container>
         <Header>My Draggable List</Header>
-        <div>
+        <FormWrapper>
           <form style={styles.form} onSubmit={handleSubmit(onSubmit)}>
             <Wrapper>
               <Label>
                 Name:
-                <input style={styles.input} type="text" {...register("name")} />
+                <input
+                  style={styles.input}
+                  type="text"
+                  {...register("name")}
+                  placeholder="Enter your task"
+                />
               </Label>
             </Wrapper>
             <Wrapper>
               <Button type="submit">Add</Button>
             </Wrapper>
           </form>
-        </div>
-      </div>
+        </FormWrapper>
+      </Container>
     </>
   );
 };
