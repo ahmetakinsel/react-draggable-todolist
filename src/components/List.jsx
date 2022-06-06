@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { Context } from "../Context";
 import styled from "styled-components";
+import { palette } from "./Theme/index";
 
 const Container = styled.div`
   display: flex;
@@ -17,7 +18,7 @@ const ListWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #4fb0c6;
+  background-color: ${palette.secondary.light.color};
   border: 1px solid #fff;
   border-radius: 5px;
   width: 400px;
@@ -34,7 +35,8 @@ const OrderedList = styled.li`
   align-items: center;
   gap: 10px;
   padding: 10px;
-  color: #fff;
+  font-weight: 600;
+  color: ${palette.primary.color};
   font-size: 16px;
   letter-spacing: -0.2px;
 `;
@@ -43,7 +45,7 @@ const Button = styled.button`
   width: 60px;
   height: 30px;
   color: #fff;
-  background: #000;
+  background-color: ${palette.primary.color};
   border-radius: 75px;
   border: none;
   font-style: normal;

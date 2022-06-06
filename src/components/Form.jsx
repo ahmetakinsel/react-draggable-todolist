@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Context } from "../Context";
 import { nanoid } from "nanoid";
 import styled from "styled-components";
+import { palette } from "./Theme/index";
 
 const styles = {
   form: { display: "flex", alignItems: "center" },
@@ -31,21 +32,22 @@ const FormWrapper = styled.div`
 const Label = styled.label`
   font-size: 18px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 18px;
   text-align: center;
   letter-spacing: -0.2px;
+  color: ${palette.primary.color};
 `;
 
 const Button = styled.button`
   width: 85px;
   height: 35px;
   color: #ffffff;
-  background: #000000;
+  background: ${palette.primary.color};
   border-radius: 75px;
   border: none;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 15px;
   line-height: 18px;
   text-align: center;
