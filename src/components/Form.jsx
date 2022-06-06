@@ -8,7 +8,7 @@ import { palette } from "./Theme/index";
 const styles = {
   form: { display: "flex", alignItems: "center" },
   input: {
-    width: "200px",
+    width: "350px",
     height: "30px",
     borderRadius: "5px",
     border: "1px solid #cecece",
@@ -30,6 +30,7 @@ const FormWrapper = styled.div`
 `;
 
 const Label = styled.label`
+  margin-left: 40px;
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
@@ -40,11 +41,14 @@ const Label = styled.label`
 `;
 
 const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 85px;
   height: 35px;
   color: #ffffff;
   background: ${palette.primary.color};
-  border-radius: 75px;
+  border-radius: 5px;
   border: none;
   font-style: normal;
   font-weight: 500;
@@ -69,7 +73,9 @@ const Form = () => {
   const onSubmit = (input) => {
     const id = nanoid();
     setData([...data, { id, name: input.name }]);
+    //clearInput
   };
+
   return (
     <>
       <Container>
@@ -80,6 +86,7 @@ const Form = () => {
                 Name:
                 <input
                   style={styles.input}
+                  //value
                   type="text"
                   {...register("name")}
                   placeholder="Enter your task"

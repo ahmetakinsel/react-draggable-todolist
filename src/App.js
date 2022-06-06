@@ -1,5 +1,5 @@
 import React from "react";
-import Context from "./Context";
+import DataList from "./Context";
 import Form from "./components/Form";
 import List from "./components/List";
 
@@ -14,11 +14,17 @@ function App() {
         marginTop: "50px",
       }}
     >
-      <h2>Task Manager</h2>
-      <Context>
+      <h2
+        style={{
+          color: "#8bc34a",
+        }}
+      >
+        Task Manager
+      </h2>
+      <DataList>
         <Form />
         <List />
-      </Context>
+      </DataList>
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { Context } from "../Context";
 import styled from "styled-components";
 import { palette } from "./Theme/index";
+import { AiFillDelete } from "react-icons/ai";
 
 const Container = styled.div`
   display: flex;
@@ -21,11 +22,13 @@ const ListWrapper = styled.div`
   background-color: ${palette.secondary.light.color};
   border: 1px solid #fff;
   border-radius: 5px;
-  width: 400px;
+  width: 500px;
   height: 60px;
-  padding: 5px;
+  padding: 6px;
   margin-bottom: 10px;
 `;
+
+const Checkbox = styled.input``;
 
 const UnorderedList = styled.ul`
   list-style: none;
@@ -41,28 +44,6 @@ const OrderedList = styled.li`
   letter-spacing: -0.2px;
 `;
 
-const Button = styled.button`
-  width: 60px;
-  height: 30px;
-  color: #fff;
-  background-color: ${palette.primary.color};
-  border-radius: 75px;
-  border: none;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 18px;
-  text-align: center;
-  letter-spacing: -0.2px;
-
-  :hover {
-    background: #fff;
-    color: #000;
-    border: 1px solid #000;
-    cursor: pointer;
-  }
-`;
-
 const List = () => {
   const [data, setData] = useContext(Context);
 
@@ -72,7 +53,7 @@ const List = () => {
 
   const handleEnd = (result) => {
     console.log(result);
-    const items = Array.from(data);
+    const items = [...data];
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
     setData(items);
@@ -106,12 +87,14 @@ const List = () => {
                         key={item.id}
                       >
                         <OrderedList>
+                          <Checkbox type="checkbox" />
                           {index + 1}.{"  "}
                           {item.name}
                         </OrderedList>
-                        <Button onClick={() => deleteItem(item.id)}>
-                          Delete
-                        </Button>
+                        <AiFillDelete
+                          style={{ cursor: "pointer", color: "#8bc34a" }}
+                          onClick={() => deleteItem(item.id)}
+                        />
                       </ListWrapper>
                     )}
                   </Draggable>
