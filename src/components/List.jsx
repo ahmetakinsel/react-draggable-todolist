@@ -1,6 +1,61 @@
 import React, { useContext } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { Context } from "../Context";
+import styled from "styled-components";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const Wrapper = styled.div`
+  justify-content: center;
+`;
+
+const ListWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid red;
+  border-radius: 5px;
+  width: 350px;
+  height: 60px;
+  padding: 5px;
+  margin-bottom: 10px;
+`;
+
+const UnorderedList = styled.ul`
+  list-style: none;
+`;
+const OrderedList = styled.li`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+`;
+
+const Button = styled.button`
+  width: 60px;
+  height: 30px;
+  color: #ffffff;
+  background: #000000;
+  border-radius: 75px;
+  border: none;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 18px;
+  text-align: center;
+  letter-spacing: -0.2px;
+
+  :hover {
+    background: #fff;
+    color: #000;
+    border: 1px solid #000;
+    cursor: pointer;
+  }
+`;
 
 const List = () => {
   const [data, setData] = useContext(Context);
@@ -22,41 +77,45 @@ const List = () => {
   };
 
   return (
-    <div className="App">
+    <Container className="App">
       <DragDropContext onDragEnd={handleEnd}>
         <Droppable droppableId="to-dos">
           {(provided) => (
-            <ul {...provided.droppableProps} ref={provided.innerRef}>
-              {data.map((item, index) => (
-                <Draggable
-                  key={item.id}
-                  draggableId={item.id.toString()}
-                  index={index}
-                >
-                  {(provided, snapshot) => (
-                    <li
-                      {...provided.draggableProps}
-                      ref={provided.innerRef}
-                      {...provided.dragHandleProps}
-                      key={item.id}
-                      className={
-                        snapshot.isDragging ? "selected" : "not-selected"
-                      }
-                    >
-                      {index + 1}.{item.name}
-                      <button onClick={() => deleteItem(item.id)}>
-                        Delete
-                      </button>
-                    </li>
-                  )}
-                </Draggable>
-              ))}
-              {provided.placeholder}
-            </ul>
+            <Wrapper>
+              <UnorderedList
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+              >
+                {data.map((item, index) => (
+                  <Draggable
+                    key={item.id}
+                    draggableId={item.id.toString()}
+                    index={index}
+                  >
+                    {(provided, snapshot) => (
+                      <ListWrapper
+                        {...provided.draggableProps}
+                        ref={provided.innerRef}
+                        {...provided.dragHandleProps}
+                        key={item.id}
+                      >
+                        <OrderedList>
+                          {index + 1}.{item.name}
+                        </OrderedList>
+                        <Button onClick={() => deleteItem(item.id)}>
+                          Delete
+                        </Button>
+                      </ListWrapper>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </UnorderedList>
+            </Wrapper>
           )}
         </Droppable>
       </DragDropContext>
-    </div>
+    </Container>
   );
 };
 

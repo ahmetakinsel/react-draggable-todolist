@@ -10,16 +10,11 @@ const styles = {
     width: "200px",
     height: "30px",
     borderRadius: "5px",
-    border: "1px solid gray",
+    border: "1px solid #cecece",
     marginLeft: "10px",
     marginRight: "10px",
   },
 };
-
-const Container = styled.div`
-  display: "flex";
-  justify-content: center;
-`;
 
 const Wrapper = styled.div``;
 
@@ -39,18 +34,25 @@ const Label = styled.label`
 `;
 
 const Button = styled.button`
-  width: 107px;
-  height: 46px;
+  width: 85px;
+  height: 35px;
   color: #ffffff;
   background: #000000;
   border-radius: 75px;
-  border: "none";
+  border: none;
   font-style: normal;
   font-weight: 600;
   font-size: 15px;
   line-height: 18px;
   text-align: center;
   letter-spacing: -0.2px;
+
+  :hover {
+    background: #fff;
+    color: #000;
+    border: 1px solid #000;
+    cursor: pointer;
+  }
 `;
 
 const Form = () => {
@@ -63,20 +65,24 @@ const Form = () => {
     setData([...data, { id, name: input.name }]);
   };
   return (
-    <Container>
-      <Header>My Draggable List</Header>
-      <form style={styles.form} onSubmit={handleSubmit(onSubmit)}>
-        <Wrapper>
-          <Label>
-            Name:
-            <input style={styles.input} type="text" {...register("name")} />
-          </Label>
-        </Wrapper>
-        <Wrapper>
-          <Button type="submit">Add</Button>
-        </Wrapper>
-      </form>
-    </Container>
+    <>
+      <div>
+        <Header>My Draggable List</Header>
+        <div>
+          <form style={styles.form} onSubmit={handleSubmit(onSubmit)}>
+            <Wrapper>
+              <Label>
+                Name:
+                <input style={styles.input} type="text" {...register("name")} />
+              </Label>
+            </Wrapper>
+            <Wrapper>
+              <Button type="submit">Add</Button>
+            </Wrapper>
+          </form>
+        </div>
+      </div>
+    </>
   );
 };
 

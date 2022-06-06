@@ -9,6 +9,7 @@ function App() {
       style={{
         display: "flex",
         flexDirection: "column",
+        justifyContent: "center",
         alignItems: "center",
         marginTop: "50px",
       }}
