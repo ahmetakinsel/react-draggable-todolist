@@ -46,19 +46,18 @@ const OrderedList = styled.li`
 
 const List = () => {
   const [data, setData] = useContext(Context);
-  const [checked, setChecked] = useState(false);
+  //const [checked, setChecked] = useState(false);
 
   const deleteItem = (id) => {
     setData(data.filter((x) => x.id !== id));
   };
-
-  const handleChecked = (item, index) => {
+  /*const handleChecked = (item, index) => {
     if (item.index) {
       setChecked(!checked);
     } else {
       console.log("?");
     }
-  };
+  };*/
 
   const handleEnd = (result) => {
     console.log(result);
@@ -99,7 +98,7 @@ const List = () => {
                           <Checkbox
                             type="checkbox"
                             value={item.checked}
-                            onChange={() => handleChecked(item.id)}
+                            //onChange={() => handleChecked(item.id)}
                           />
                           {index + 1}.{"  "}
                           {item.name}
