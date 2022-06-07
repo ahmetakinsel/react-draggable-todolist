@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import { useForm } from "react-hook-form";
+import React, { useContext, useState } from "react";
 import { Context } from "../Context";
 import { nanoid } from "nanoid";
 import styled from "styled-components";
@@ -67,36 +66,35 @@ const Button = styled.button`
 
 const Form = () => {
   const [data, setData] = useContext(Context);
+  const [todoTextInput, setTodoTextInput] = useState("");
 
-  const { register, handleSubmit } = useForm();
-
-  const onSubmit = (input) => {
+  const onSubmit = () => {
     const id = nanoid();
-    setData([...data, { id, name: input.name }]);
-    //clearInput
+    setData([...data, { id, name: todoTextInput }]);
+    setTodoTextInput("");
   };
 
   return (
     <>
       <Container>
         <FormWrapper>
-          <form style={styles.form} onSubmit={handleSubmit(onSubmit)}>
-            <Wrapper>
-              <Label>
-                Name:
-                <input
-                  style={styles.input}
-                  //value
-                  type="text"
-                  {...register("name")}
-                  placeholder="Enter your task"
-                />
-              </Label>
-            </Wrapper>
-            <Wrapper>
-              <Button type="submit">Add</Button>
-            </Wrapper>
-          </form>
+          <Wrapper>
+            <Label>
+              Name:
+              <input
+                style={styles.input}
+                type="text"
+                value={todoTextInput}
+                onChange={(event) => setTodoTextInput(event.target.value)}
+                placeholder="Enter your task"
+              />
+            </Label>
+          </Wrapper>
+          <Wrapper>
+            <Button type="submit" onClick={onSubmit}>
+              Add
+            </Button>
+          </Wrapper>
         </FormWrapper>
       </Container>
     </>
