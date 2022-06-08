@@ -62,7 +62,7 @@ const List = () => {
     if (item.index) {
       setChecked(!checked);
     } else {
-      console.log("?");
+      console.log("??");
     }
   };
 
